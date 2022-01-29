@@ -1,12 +1,11 @@
 const screens = document.querySelectorAll('.screen')
 const startBtn = document.querySelector('.start-button')
+const restartBtn = document.querySelector('.restart-button')
 const gameTime = document.querySelector('.game-time')
 const gameLvl = document.querySelector('.game-levels')
-const board1 = document.querySelector('.board_1')
-const board2 = document.querySelector('.board_2')
-const board3 = document.querySelector('.board_3')
+const board = document.querySelector('.board')
 const screenTime = document.querySelectorAll('.screen__time')
-const board = document.querySelectorAll('.board')
+const result = document.querySelector('.finish-result')
 let time = 0
 let score = 0
 
@@ -24,13 +23,13 @@ gameTime.addEventListener('click', (event) => {
 gameLvl.addEventListener('click', (event) => {
     if (event.target.classList.contains('game-level__easy')) {
         screens[2].classList.add('up')
-        startGameOnDifferentLevels(50, 10, board1, createCircleForDifferentLevel)
+        startGameOnDifferentLevels(50, 100, board, createCircleForDifferentLevel)
     } else if (event.target.classList.contains('game-level__normal')) {
-        screens[2].classList.add('double-up')
-        startGameOnDifferentLevels(25, 50, board2, createCircleForDifferentLevel)
+        screens[2].classList.add('up')
+        startGameOnDifferentLevels(25, 50, board, createCircleForDifferentLevel)
     } else if (event.target.classList.contains('game-level__hard')) {
-        screens[2].classList.add('triple-up')
-        startGameOnDifferentLevels(10, 25, board3, createCircleForDifferentLevel)
+        screens[2].classList.add('up')
+        startGameOnDifferentLevels(10, 25, board, createCircleForDifferentLevel)
     }
 })
 
@@ -40,6 +39,7 @@ function startGameOnDifferentLevels(minSize, maxSize, board, createCircleCallbac
     for (const screensTime of screenTime) {
         screensTime.innerHTML = `00:${time}`
     }
+    deleteCircleByClick(minSize, maxSize, board)
 }
 
 function createCircleForDifferentLevel(minSize, maxSize, board) {
@@ -75,10 +75,6 @@ function deleteCircleByClick(minSize, maxSize, board) {
     })
 }
 
-deleteCircleByClick(50, 100, board1)
-deleteCircleByClick(25, 50, board2)
-deleteCircleByClick(10, 25, board3)
-
 function timer() {
     if (time === 0) {
         stopGame()
@@ -96,30 +92,12 @@ function timer() {
 }
 
 function stopGame() {
-    for (const screensTime of screenTime) {
-        screensTime.parentNode.remove()
-    }
-
-    for (const overBoards of board) {
-        overBoards.innerHTML = `
-            <h1 class="finish-content">
-                score: <span class="finish-content__result">${score}</span>
-            </h1>
-            <h2 class="finish__subtittle">click on the board and reload the page to start a new game</h2>`
-    }
-
-    setTimeout(() => {
-        for (const overBoards of board) {
-            overBoards.addEventListener('click', () => {
-                for (const overBoards of board) {
-                    overBoards.innerHTML = ``
-                }
-                for (let i = 0; i <=4; i++) {
-                    screens[i].classList.remove('up')
-                    screens[i].classList.remove('double-up')
-                    screens[i].classList.remove('triple-up')
-                }
-            })
-        }
-    }, 1500)
+    screens[3].classList.add('up')
+    result.textContent = `${score}`
+    restartBtn.addEventListener('click', () => {
+        screens.forEach(item => {
+            item.classList.remove('up')
+            location.reload()
+        })
+    })
 }

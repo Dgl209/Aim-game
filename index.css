@@ -3,7 +3,6 @@
 * {
     box-sizing: border-box;
 }
-/* --- start main ---*/
 body {
     margin: 0;
 
@@ -23,18 +22,11 @@ body {
     flex-direction: column;
     color: white;
     overflow: hidden;
+    transition: all .3s linear;
 }
 
 .screen.up {
     margin-top: -100vh;
-}
-
-.screen.double-up {
-    margin-top: -200vh;
-}
-
-.screen.triple-up {
-    margin-top: -300vh;
 }
 
 .board {
@@ -48,10 +40,6 @@ body {
     border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.04);
 }
-
-/* --- end main ---*/
-
-/* --- start general --- */
 
 .tittle {
     text-transform: uppercase;
@@ -93,25 +81,31 @@ body {
     transform: scale(1.1);
 }
 
-.finish-content {
+.finish-title {
     text-transform: uppercase;
     font-family: 'Mochiy Pop P One', sans-serif;
     color: orange;
 }
 
-.finish-content__result {
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 40px;
+.finish-result {
+    font-family: 'Mochiy Pop P One', sans-serif;
+    font-size: 32px;
     margin-left: 6px;
     color: yellow;
 }
 
-.finish__subtittle {
-    font-family: 'Josefin Sans', sans-serif;
+.restart-button {
+    background: none;
     color: orange;
+    font-size: 26px;
+    padding: 10px 20px;
+    font-family: 'Mochiy Pop P One', sans-serif;
+    border: none;
 }
 
-/*select time screen*/
+.restart-button:hover {
+    color: white;
+}
 
 .game-time__button {
     text-decoration: none;
@@ -130,8 +124,6 @@ body {
     transform: scale(1.1);
 }
 
-/* --- --- --- */
-
 .screen__tittle {
     text-transform: uppercase;
     font-family: 'Mochiy Pop P One', sans-serif;
@@ -146,10 +138,6 @@ body {
     color: yellow;
 }
 
-/* --- end general --- */
-
-/* --- circle ---*/
-
 .circle {
     background: orange;
     border-radius: 50px;
@@ -162,8 +150,6 @@ body {
     transform: scale(1.7);
 }
 
-/* --- finish board --- */
-
 .board {
     display: flex;
     justify-content: center;
@@ -171,7 +157,6 @@ body {
     flex-direction: column;
 }
 
-/* ------ end of main code ------ */
 @media (max-width: 556px) {
     .game-level__button {
         display: grid;
