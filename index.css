@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&family=Mochiy+Pop+P+One&family=Open+Sans+Condensed:ital,wght@1,300&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+/* --- start main ---*/
+body {
+    margin: 0;
+
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+    overflow: hidden;
+
+    background-color: rgba(0, 0, 0, 0.950);
+}
+
+.screen {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    overflow: hidden;
+}
+
+.screen.up {
+    margin-top: -100vh;
+}
+
+.screen.double-up {
+    margin-top: -200vh;
+}
+
+.screen.triple-up {
+    margin-top: -300vh;
+}
+
+.board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 95%;
+    height: 80%;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* --- end main ---*/
+
+/* --- start general --- */
+
+.tittle {
+    text-transform: uppercase;
+    font-family: 'Mochiy Pop P One', sans-serif;
+    color: orange;
+}
+
+.start-button {
+    text-decoration: none;
+    color: orange;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+    transition: all .1s linear;
+}
+
+.start-button:hover {
+    color: white;
+}
+
+.start-button:active {
+    transform: scale(1.1);
+}
+
+
+.game-level__button {
+    text-decoration: none;
+    color: orange;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 36px;
+    margin: 0 25px;
+    transition: all .1s linear;
+}
+
+.game-level__button:hover {
+    color: white;
+}
+
+.game-level__button:active {
+    transform: scale(1.1);
+}
+
+.finish-content {
+    text-transform: uppercase;
+    font-family: 'Mochiy Pop P One', sans-serif;
+    color: orange;
+}
+
+.finish-content__result {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 40px;
+    margin-left: 6px;
+    color: yellow;
+}
+
+.finish__subtittle {
+    font-family: 'Josefin Sans', sans-serif;
+    color: orange;
+}
+
+/*select time screen*/
+
+.game-time__button {
+    text-decoration: none;
+    color: orange;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+    margin: 0 5px;
+    transition: all .1s linear;
+}
+
+.game-time__button:hover {
+    color: white;
+}
+
+.game-time__button:active {
+    transform: scale(1.1);
+}
+
+/* --- --- --- */
+
+.screen__tittle {
+    text-transform: uppercase;
+    font-family: 'Mochiy Pop P One', sans-serif;
+    font-size: 20px;
+    color: orange;
+}
+
+.screen__time {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 26px;
+    margin-left: 10px;
+    color: yellow;
+}
+
+/* --- end general --- */
+
+/* --- circle ---*/
+
+.circle {
+    background: orange;
+    border-radius: 50px;
+    position: absolute;
+    cursor: pointer;
+    transition: all .2s linear;
+}
+
+.circle:active {
+    transform: scale(1.7);
+}
+
+/* --- finish board --- */
+
+.board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* ------ end of main code ------ */
+@media (max-width: 556px) {
+    .game-level__button {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 440px) {
+    .game-time {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .game-time__button {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 250px) {
+    .game-time {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
