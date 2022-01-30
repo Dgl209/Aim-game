@@ -1,17 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&family=Mochiy+Pop+P+One&family=Open+Sans+Condensed:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gluten:wght@200&family=Zen+Kurenaido&display=swap');
 
 * {
     box-sizing: border-box;
 }
 body {
     margin: 0;
-
+    color: #fff;
     height: 100vh;
     width: 100vw;
     text-align: center;
     overflow: hidden;
-
-    background-color: rgba(0, 0, 0, 0.950);
 }
 
 .screen {
@@ -23,6 +21,7 @@ body {
     color: white;
     overflow: hidden;
     transition: all .3s linear;
+    background: linear-gradient(90deg, #FFA500 0%, #FA8072 100%);
 }
 
 .screen.up {
@@ -37,109 +36,13 @@ body {
     width: 95%;
     height: 80%;
     overflow: hidden;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.04);
-}
+    border-radius: 30px;
+    background: linear-gradient(118.38deg, #FA8072 -20.6%, #FFA500 200.44%);
+    box-shadow: -8px -8px 20px #FA8072, 10px 7px 20px #FA8072;
 
-.tittle {
-    text-transform: uppercase;
-    font-family: 'Mochiy Pop P One', sans-serif;
-    color: orange;
-}
-
-.start-button {
-    text-decoration: none;
-    color: orange;
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 20px;
-    transition: all .1s linear;
-}
-
-.start-button:hover {
-    color: white;
-}
-
-.start-button:active {
-    transform: scale(1.1);
-}
-
-
-.game-level__button {
-    text-decoration: none;
-    color: orange;
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 36px;
-    margin: 0 25px;
-    transition: all .1s linear;
-}
-
-.game-level__button:hover {
-    color: white;
-}
-
-.game-level__button:active {
-    transform: scale(1.1);
-}
-
-.finish-title {
-    text-transform: uppercase;
-    font-family: 'Mochiy Pop P One', sans-serif;
-    color: orange;
-}
-
-.finish-result {
-    font-family: 'Mochiy Pop P One', sans-serif;
-    font-size: 32px;
-    margin-left: 6px;
-    color: yellow;
-}
-
-.restart-button {
-    background: none;
-    color: orange;
-    font-size: 26px;
-    padding: 10px 20px;
-    font-family: 'Mochiy Pop P One', sans-serif;
-    border: none;
-}
-
-.restart-button:hover {
-    color: white;
-}
-
-.game-time__button {
-    text-decoration: none;
-    color: orange;
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 20px;
-    margin: 0 5px;
-    transition: all .1s linear;
-}
-
-.game-time__button:hover {
-    color: white;
-}
-
-.game-time__button:active {
-    transform: scale(1.1);
-}
-
-.screen__tittle {
-    text-transform: uppercase;
-    font-family: 'Mochiy Pop P One', sans-serif;
-    font-size: 20px;
-    color: orange;
-}
-
-.screen__time {
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 26px;
-    margin-left: 10px;
-    color: yellow;
 }
 
 .circle {
-    background: orange;
     border-radius: 50px;
     position: absolute;
     cursor: pointer;
@@ -147,14 +50,136 @@ body {
 }
 
 .circle:active {
-    transform: scale(1.7);
+    transform: scale(2.0);
 }
 
-.board {
+h1 {
+    line-height: 1.4;
+    font-size: 4rem;
+    font-family: 'Gluten', cursive;
+    margin: 0;
+    color: black;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Zen Kurenaido', sans-serif;
+}
+
+a:hover {
+    color: #000;
+    transition: 0.5s;
+    text-decoration: underline;
+}
+
+.start-button {
+    font-size: 2rem;
+}
+
+.title-width {
+    width: 300px;
+}
+
+.game-time__button {
+
+    font-size: 30px;
+    margin: 0 5px;
+    transition: all .1s linear;
+}
+.time-left__title {
+    color: black;
+    font-size: 30px;
+}
+
+.time-left__count {
+
+    font-size: 26px;
+    margin-left: 10px;
+}
+
+
+.container-for-level {
+    display: flex;
+    justify-content: space-between;
+}
+
+.game-level__button {
+    font-size: 30px;
+    transition: all .1s linear;
+    margin: 10px;
+    color: white;
+}
+
+.turbo-mode {
+    margin-left: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.colorfullTarget {
+    width: 57px;
+    height: 27px;
+    background: #c9c912;
+    position: relative;
+    border-radius: 15px;
+}
+
+.colorfullTarget label {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition: all .5s ease;
+    cursor: pointer;
+    position: absolute;
+    background: white;
+    top: -2px;
+    left: -3px;
+}
+
+.turbo-mode input[type=checkbox]:checked + label {
+    background: black;
+    left: 27px;
+}
+
+input[type=checkbox] {
+    visibility: hidden;
+}
+
+.finish-title {
+    color: black;
+    font-size: 4rem;
+}
+
+.finish-result {
+    font-size: 4rem;
+    color: black;
+    border-bottom: 2px solid black;
+}
+
+.restart-button {
+    font-size: 2rem;
+}
+
+@keyframes turboModeLeft {
+    from {
+        left: 0;
+    }
+    to {
+        left: 3200px;
+    }
+}
+
+@keyframes turboModeTop {
+    from {
+        top: 0;
+    }
+    to {
+        top: 1200px;
+    }
 }
 
 @media (max-width: 556px) {

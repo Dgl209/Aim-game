@@ -8,16 +8,15 @@
     <link href="index.css" rel="stylesheet">
 </head>
 <body>
-
-<header class="main-header">
+<div>
 
     <div class="screen ">
-        <h1 class="tittle">aim training</h1>
-        <a class="start-button" href="#">start the game</a>
+        <h1>Aim Training</h1>
+        <a class="start-button" href="#">Start game</a>
     </div>
 
     <div class="screen ">
-        <h1 class="tittle">select the game time</h1>
+        <h1>Set time</h1>
         <div class="game-time">
             <a class="game-time__button" href="#" data-time="10">10 sek</a>
             <a class="game-time__button" href="#" data-time="20">20 sek</a>
@@ -29,27 +28,38 @@
     </div>
 
     <div class="screen ">
-        <h1 class="tittle col">select the game level</h1>
-        <div class="game-levels">
-            <a class="game-level__easy game-level__button" href="#">easy</a>
-            <a class="game-level__normal game-level__button" href="#">normal</a>
-            <a class="game-level__hard game-level__button" href="#">hard</a>
+        <div class="container-for-level">
+            <div>
+                <h1 class="title-width">Select level </h1>
+                <div class="game-levels">
+                    <a class="game-level__easy game-level__button" href="#">Easy</a>
+                    <a class="game-level__normal game-level__button" href="#">Normal</a>
+                    <a class="game-level__hard game-level__button" href="#">Hard</a>
+                </div>
+            </div>
+            <div class="turbo-mode">
+                <h1 class="title-width">Turbo Mode</h1>
+                <div class="colorfullTarget">
+                    <input checked=false type="checkbox" id="turboModeInput">
+                    <label for="turboModeInput"></label>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="screen ">
-        <h1 class="screen__tittle col">time left: <span class="screen__time">00:00</span></h1>
+        <h1 class="time-left__title">Time left: <span class="time-left__count">00:00</span></h1>
         <div class="board"></div>
     </div>
 
     <div class="screen">
         <h1 class="finish-title">
-            score: <span class="finish-result">0</span>
+            Score: <span class="finish-result">0</span>
         </h1>
-        <button class="restart-button">Restart</button>
+        <a class="restart-button" href="#">Restart</a>
     </div>
-</header>
 
+</div>
     <script src="index.js"></script>
 </body>
 </html>

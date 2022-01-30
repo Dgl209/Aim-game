@@ -4,10 +4,21 @@ const restartBtn = document.querySelector('.restart-button')
 const gameTime = document.querySelector('.game-time')
 const gameLvl = document.querySelector('.game-levels')
 const board = document.querySelector('.board')
-const screenTime = document.querySelectorAll('.screen__time')
+const timeLeftCount = document.querySelectorAll('.time-left__count')
 const result = document.querySelector('.finish-result')
+const colors = ['#F08080', '#FF1493', '#FF8C00', '#FFFF00',
+    '#EE82EE', '#9370DB', '#DAA520', '#1E90FF']
+const turboModeInput = document.querySelector('#turboModeInput')
+turboModeInput.checked = false
+
 let time = 0
 let score = 0
+let turboMode = false
+
+turboModeInput.addEventListener('click', () => {
+    turboMode = !turboMode
+    alert('To be continued')
+})
 
 startBtn.addEventListener('click', () => {
     screens[0].classList.add('up')
@@ -36,7 +47,7 @@ gameLvl.addEventListener('click', (event) => {
 function startGameOnDifferentLevels(minSize, maxSize, board, createCircleCallback) {
     createCircleCallback(minSize, maxSize, board)
     setInterval(timer, 1000)
-    for (const screensTime of screenTime) {
+    for (const screensTime of timeLeftCount) {
         screensTime.innerHTML = `00:${time}`
     }
     deleteCircleByClick(minSize, maxSize, board)
@@ -56,6 +67,8 @@ function createCircleForDifferentLevel(minSize, maxSize, board) {
     circle.style.height = `${size}px`
     circle.style.top = `${y}px`
     circle.style.left = `${x}px`
+
+    circle.style.backgroundColor = getRandomColor()
 
     board.append(circle)
 }
@@ -80,11 +93,11 @@ function timer() {
         stopGame()
     } else {
         let current = --time
-        for (const screensTime of screenTime) {
+        for (const screensTime of timeLeftCount) {
             screensTime.innerHTML = `00:${current}`
         }
         if (current < 10) {
-            for (const screensTime of screenTime) {
+            for (const screensTime of timeLeftCount) {
                 screensTime.innerHTML = `00:0${current}`
             }
         }
@@ -97,7 +110,14 @@ function stopGame() {
     restartBtn.addEventListener('click', () => {
         screens.forEach(item => {
             item.classList.remove('up')
-            location.reload()
+            setTimeout(() => {
+                location.reload()
+            }, 500)
         })
     })
+}
+
+function getRandomColor() {
+    const index = Math.floor(Math.random() * colors.length)
+    return colors[index]
 }
