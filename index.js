@@ -17,7 +17,6 @@ let turboMode = false
 
 turboModeInput.addEventListener('click', () => {
     turboMode = !turboMode
-    alert('To be continued')
 })
 
 startBtn.addEventListener('click', () => {
@@ -45,7 +44,7 @@ gameLvl.addEventListener('click', (event) => {
 })
 
 function startGameOnDifferentLevels(minSize, maxSize, board, createCircleCallback) {
-    createCircleCallback(minSize, maxSize, board)
+    createCircleCallback(minSize, maxSize, board, turboMode)
     setInterval(timer, 1000)
     for (const screensTime of timeLeftCount) {
         screensTime.innerHTML = `00:${time}`
@@ -53,9 +52,19 @@ function startGameOnDifferentLevels(minSize, maxSize, board, createCircleCallbac
     deleteCircleByClick(minSize, maxSize, board)
 }
 
-function createCircleForDifferentLevel(minSize, maxSize, board) {
+function createCircleForDifferentLevel(minSize, maxSize, board, turboMode) {
     const circle = document.createElement('div')
     circle.classList.add('circle')
+    if (turboMode) {
+        const direction = randomNumber(0, 1)
+        if (direction === 0) {
+            circle.className = 'circle'
+            circle.classList.add('turbo-mode-activator__left')
+        } else {
+            circle.className = 'circle'
+            circle.classList.add('turbo-mode-activator__top')
+        }
+    }
 
     const size = randomNumber(minSize, maxSize)
     const {width, height} = board.getBoundingClientRect()
@@ -83,7 +92,7 @@ function deleteCircleByClick(minSize, maxSize, board) {
         if (event.target.classList.contains('circle')) {
             score++
             event.target.remove()
-            createCircleForDifferentLevel(minSize, maxSize, board)
+            createCircleForDifferentLevel(minSize, maxSize, board, turboMode)
         }
     })
 }

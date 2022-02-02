@@ -164,12 +164,20 @@ input[type=checkbox] {
     font-size: 2rem;
 }
 
+.turbo-mode-activator__left {
+    animation: turboModeLeft 2s linear infinite;
+}
+
+.turbo-mode-activator__top {
+    animation: turboModeTop 1s linear infinite;
+}
+
 @keyframes turboModeLeft {
     from {
         left: 0;
     }
     to {
-        left: 3200px;
+        left: 100%;
     }
 }
 
@@ -178,7 +186,7 @@ input[type=checkbox] {
         top: 0;
     }
     to {
-        top: 1200px;
+        top: 100%;
     }
 }
 
