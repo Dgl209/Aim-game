@@ -9,7 +9,8 @@ const result = document.querySelector('.finish-result')
 const colors = ['#F08080', '#FF1493', '#FF8C00', '#FFFF00',
     '#EE82EE', '#9370DB', '#DAA520', '#1E90FF']
 const turboModeInput = document.querySelector('#turboModeInput')
-const colorFullTarget = document.querySelector('.colorfullTarget')
+const colorFullCircleInput = document.querySelector('#colorFullCircleInput')
+const colorFullTarget = document.querySelectorAll('.colorfullTarget')
 const dropBtn = document.querySelector('.drop-button')
 const dropMenu = document.querySelector('#drop-menu')
 const dropContent = document.querySelector('.drop-content')
@@ -17,13 +18,16 @@ const backgrounds = document.querySelectorAll('.background')
 const inputBackground1 = document.querySelector('#background-1')
 const inputBackground2 = document.querySelector('#background-2')
 const inputBackground3 = document.querySelector('#background-3')
+const continueBtn = document.querySelector('.continue-button')
 
 let time = 0
 let score = 0
 let data = localStorage.getItem('data') ? localStorage.getItem('data') : 1
 localStorage.setItem('data', data)
 turboModeInput.checked = false
+colorFullCircleInput.checked = true
 let turboMode = false
+let colorFullCircle = true
 let dropDown = false
 
 dropBtn.addEventListener('click', () => {
@@ -65,56 +69,28 @@ backgrounds.forEach(item => {
 
 assignmentBackground(data)
 
-function assignmentBackground(data) {
-    if (Number(data) === 1) {
-        screens.forEach(item => {
-            item.className = 'screen'
-            item.classList.add('background-1')
-            dropContent.style.backgroundColor = '#c9c912'
-            colorFullTarget.style.backgroundColor = '#c9c912'
-            board.style.background = '#d08a06'
-            backgrounds.forEach(item => {
-                item.checked = false
-            })
-            inputBackground1.checked = true
-        })
-    } else if (Number(data) === 2) {
-        screens.forEach(item => {
-            item.className = 'screen'
-            item.classList.add('background-2')
-            dropContent.style.backgroundColor = '#831b60'
-            colorFullTarget.style.backgroundColor = '#AA076B'
-            board.style.background = '#650f4d'
-            board.style.boxShadow = 'none'
-            backgrounds.forEach(item => {
-                item.checked = false
-            })
-            inputBackground2.checked = true
-        })
-    } else if (Number(data) === 3) {
-        screens.forEach(item => {
-            item.className = 'screen'
-            item.classList.add('background-3')
-            dropContent.style.backgroundColor = '#052b80'
-            colorFullTarget.style.backgroundColor = '#284275'
-            board.style.background = '#203865'
-            backgrounds.forEach(item => {
-                item.checked = false
-            })
-            inputBackground3.checked = true
-        })
-    }
-}
-
-
 turboModeInput.addEventListener('click', () => {
     turboMode = !turboMode
+})
+
+colorFullCircleInput.addEventListener('click', () => {
+    colorFullCircle = !colorFullCircle
+    console.log(colorFullCircle)
 })
 
 startBtn.addEventListener('click', () => {
     screens[0].classList.add('up')
     dropMenu.classList.remove('show')
     dropDown = !dropDown
+    dropBtn.style.display = 'none'
+})
+
+continueBtn.addEventListener('click', () => {
+    screens[3].classList.add('up')
+    setInterval(timer, 1000)
+    for (const screensTime of timeLeftCount) {
+        screensTime.innerHTML = `00:${time}`
+    }
 })
 
 gameTime.addEventListener('click', (event) => {
@@ -138,15 +114,11 @@ gameLvl.addEventListener('click', (event) => {
 })
 
 function startGameOnDifferentLevels(minSize, maxSize, board, createCircleCallback) {
-    createCircleCallback(minSize, maxSize, board, turboMode)
-    setInterval(timer, 1000)
-    for (const screensTime of timeLeftCount) {
-        screensTime.innerHTML = `00:${time}`
-    }
+    createCircleCallback(minSize, maxSize, board, turboMode, colorFullCircle)
     deleteCircleByClick(minSize, maxSize, board)
 }
 
-function createCircleForDifferentLevel(minSize, maxSize, board, turboMode) {
+function createCircleForDifferentLevel(minSize, maxSize, board, turboMode, colorFullCircle) {
     const circle = document.createElement('div')
     circle.classList.add('circle')
     if (turboMode) {
@@ -171,7 +143,7 @@ function createCircleForDifferentLevel(minSize, maxSize, board, turboMode) {
     circle.style.top = `${y}px`
     circle.style.left = `${x}px`
 
-    circle.style.backgroundColor = getRandomColor()
+    colorFullCircle ? circle.style.backgroundColor = getRandomColor() : circle.style.backgroundColor = 'white'
 
     board.append(circle)
 }
@@ -208,7 +180,7 @@ function timer() {
 }
 
 function stopGame() {
-    screens[3].classList.add('up')
+    screens[4].classList.add('up')
     result.textContent = `${score}`
     restartBtn.addEventListener('click', () => {
         screens.forEach(item => {
@@ -223,4 +195,51 @@ function stopGame() {
 function getRandomColor() {
     const index = Math.floor(Math.random() * colors.length)
     return colors[index]
+}
+
+function assignmentBackground(data) {
+    if (Number(data) === 1) {
+        screens.forEach(item => {
+            item.className = 'screen'
+            item.classList.add('background-1')
+            dropContent.style.backgroundColor = '#c9c912'
+            colorFullTarget.forEach(item => {
+                item.style.backgroundColor = '#c9c912'
+            })
+            board.style.background = '#d08a06'
+            backgrounds.forEach(item => {
+                item.checked = false
+            })
+            inputBackground1.checked = true
+        })
+    } else if (Number(data) === 2) {
+        screens.forEach(item => {
+            item.className = 'screen'
+            item.classList.add('background-2')
+            dropContent.style.backgroundColor = '#831b60'
+            colorFullTarget.forEach(item => {
+                item.style.backgroundColor = '#AA076B'
+            })
+            board.style.background = '#650f4d'
+            board.style.boxShadow = 'none'
+            backgrounds.forEach(item => {
+                item.checked = false
+            })
+            inputBackground2.checked = true
+        })
+    } else if (Number(data) === 3) {
+        screens.forEach(item => {
+            item.className = 'screen'
+            item.classList.add('background-3')
+            dropContent.style.backgroundColor = '#0339a2'
+            colorFullTarget.forEach(item => {
+                item.style.backgroundColor = '#284275'
+            })
+            board.style.background = '#203865'
+            backgrounds.forEach(item => {
+                item.checked = false
+            })
+            inputBackground3.checked = true
+        })
+    }
 }

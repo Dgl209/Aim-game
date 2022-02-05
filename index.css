@@ -211,13 +211,7 @@ a:hover {
     color: white;
 }
 
-.turbo-mode {
-    margin-left: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
+
 
 .colorfullTarget {
     width: 57px;
@@ -240,13 +234,47 @@ a:hover {
     left: -3px;
 }
 
+.circle-style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.circle-style input[type=checkbox]:checked + label {
+    background: black;
+    left: 27px;
+}
+
+.turbo-mode {
+    margin-left: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 .turbo-mode input[type=checkbox]:checked + label {
     background: black;
     left: 27px;
 }
 
+.turbo-mode-activator__left {
+    animation: turboModeLeft 2s linear infinite;
+}
+
+.turbo-mode-activator__top {
+    animation: turboModeTop 1s linear infinite;
+}
+
+
 input[type=checkbox] {
     visibility: hidden;
+}
+
+.continue-button {
+    font-size: 2rem;
+    margin-top: 40px;
 }
 
 .finish-title {
@@ -262,14 +290,6 @@ input[type=checkbox] {
 
 .restart-button {
     font-size: 2rem;
-}
-
-.turbo-mode-activator__left {
-    animation: turboModeLeft 2s linear infinite;
-}
-
-.turbo-mode-activator__top {
-    animation: turboModeTop 1s linear infinite;
 }
 
 @keyframes rot {
