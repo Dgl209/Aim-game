@@ -158,7 +158,7 @@ function deleteCircleByClick(minSize, maxSize, board) {
         if (event.target.classList.contains('circle')) {
             score++
             event.target.remove()
-            createCircleForDifferentLevel(minSize, maxSize, board, turboMode)
+            createCircleForDifferentLevel(minSize, maxSize, board, turboMode, colorFullCircle)
         }
     })
 }
